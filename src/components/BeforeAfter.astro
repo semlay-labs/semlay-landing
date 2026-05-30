@@ -1,0 +1,111 @@
+---
+const question =
+  "What is contribution margin by channel after COGS, fees, and shipping?";
+
+const beforeAnswer = `Based on your order data, margin varies by channel. Web typically has higher volume. I'd estimate web around 30–35% gross margin, mobile slightly lower, and marketplace depends on fees. Consider reviewing your finance team's spreadsheet for exact figures.`;
+
+type ChannelRow = { channel: string; margin: string };
+
+const afterRows: ChannelRow[] = [
+  { channel: "Web", margin: "€28,329,013" },
+  { channel: "Mobile", margin: "€20,255,781" },
+  { channel: "Marketplace", margin: "€7,939,167" },
+];
+---
+
+<section id="demo" class="py-16 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-brand-primary sm:text-4xl">
+        Generic AI vs. answers you can trust
+      </h2>
+      <p class="mt-4 text-lg text-brand-secondary">
+        Same business question. One hand-waves. One uses precalculated metrics
+        tested on your questions before go-live.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      <article
+        class="flex flex-col rounded-2xl border border-red-200 bg-brand-surface p-6 shadow-sm"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600"
+            aria-hidden="true"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"></path>
+            </svg>
+          </span>
+          <div>
+            <p class="text-sm font-semibold text-brand-primary">Generic AI on your database</p>
+            <p class="text-xs text-brand-muted">Vague · unverified · no business rules</p>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-xl bg-slate-50 p-4">
+          <p class="text-sm font-medium text-brand-secondary">You asked</p>
+          <p class="mt-1 text-sm text-brand-primary">{question}</p>
+        </div>
+
+        <div class="mt-4 flex-1 rounded-xl border border-red-100 bg-red-50/50 p-4">
+          <p class="text-sm leading-relaxed text-brand-secondary">{beforeAnswer}</p>
+        </div>
+      </article>
+
+      <article
+        class="flex flex-col rounded-2xl border border-emerald-200 bg-brand-surface p-6 shadow-sm"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600"
+            aria-hidden="true"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+          <div>
+            <p class="text-sm font-semibold text-brand-primary">Semlay on your infrastructure</p>
+            <p class="text-xs text-brand-muted">Precalculated · eval-tested · EUR</p>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-xl bg-slate-50 p-4">
+          <p class="text-sm font-medium text-brand-secondary">You asked</p>
+          <p class="mt-1 text-sm text-brand-primary">{question}</p>
+        </div>
+
+        <div class="mt-4 flex-1 rounded-xl border border-emerald-100 bg-emerald-50/30 p-4">
+          <p class="mb-3 text-sm text-brand-secondary">
+            Contribution margin by sales channel (demo synthetic data):
+          </p>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-emerald-100 text-left text-brand-muted">
+                <th class="pb-2 font-medium">Channel</th>
+                <th class="pb-2 text-right font-medium">Contribution margin</th>
+              </tr>
+            </thead>
+            <tbody class="text-brand-primary">
+              {
+                afterRows.map((row) => (
+                  <tr class="border-b border-emerald-50 last:border-0">
+                    <td class="py-2.5">{row.channel}</td>
+                    <td class="py-2.5 text-right font-medium tabular-nums">{row.margin}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-brand-muted">
+      Illustrative demo figures from synthetic ecommerce data. Your audit tests
+      your own questions on your data.
+    </p>
+  </div>
+</section>

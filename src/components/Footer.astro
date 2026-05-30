@@ -1,0 +1,46 @@
+---
+const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
+const mailtoUrl = "mailto:hello@semlay.ai";
+const year = new Date().getFullYear();
+---
+
+<footer class="py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div
+      class="rounded-3xl border border-brand-border bg-brand-surface px-6 py-12 text-center shadow-sm sm:px-12"
+    >
+      <h2 class="text-2xl font-bold tracking-tight text-brand-primary sm:text-3xl">
+        Ready to test your top three questions?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-brand-secondary">
+        Half-day readiness audit on your data. Exec report, recorded demo, and
+        a clear verdict — Ready, Needs prep, or Not viable.
+      </p>
+      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <a
+          href={calendlyUrl}
+          class="inline-flex cursor-pointer items-center justify-center rounded-xl bg-brand-cta px-6 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a readiness audit — $750
+        </a>
+        <a
+          href={mailtoUrl}
+          class="inline-flex cursor-pointer items-center justify-center rounded-xl border border-brand-border bg-brand-bg px-6 py-3.5 text-base font-semibold text-brand-primary transition-colors duration-200 hover:border-slate-300 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
+        >
+          hello@semlay.ai
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-brand-border pt-8 text-sm text-brand-muted sm:flex-row"
+    >
+      <p>© {year} Semlay Labs. All rights reserved.</p>
+      <p class="text-center sm:text-right">
+        Private AI analytics — deployed on your infrastructure.
+      </p>
+    </div>
+  </div>
+</footer>

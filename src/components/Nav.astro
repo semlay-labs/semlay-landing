@@ -1,0 +1,34 @@
+---
+const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
+---
+
+<header class="fixed top-4 left-4 right-4 z-50 mx-auto max-w-6xl">
+  <nav
+    class="flex items-center justify-between rounded-2xl border border-brand-border bg-brand-surface/90 px-5 py-3 shadow-sm backdrop-blur-md"
+    aria-label="Primary"
+  >
+    <a
+      href="/"
+      class="text-lg font-semibold tracking-tight text-brand-primary transition-colors duration-200 hover:text-brand-cta"
+    >
+      Semlay
+    </a>
+
+    <div class="hidden items-center gap-8 sm:flex">
+      <a
+        href="#demo"
+        class="cursor-pointer text-sm font-medium text-brand-secondary transition-colors duration-200 hover:text-brand-primary"
+      >
+        See the difference
+      </a>
+      <a
+        href={calendlyUrl}
+        class="cursor-pointer rounded-xl bg-brand-cta px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book audit — $750
+      </a>
+    </div>
+  </nav>
+</header>

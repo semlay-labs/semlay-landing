@@ -1,0 +1,58 @@
+---
+import PillBadge from "./PillBadge.astro";
+import VideoPlaceholder from "./VideoPlaceholder.astro";
+
+const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
+const mailtoUrl =
+  "mailto:hello@semlay.ai?subject=Readiness%20audit%20(%24750)";
+
+const badges = ["Private infra", "Eval-tested", "Your servers"];
+---
+
+<section class="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
+  <div class="gradient-blob pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <div class="flex flex-wrap gap-2">
+          {badges.map((badge) => <PillBadge label={badge} />)}
+        </div>
+
+        <h1
+          class="mt-6 text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
+        >
+          Ask your business data questions in plain English — privately.
+        </h1>
+
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-brand-secondary">
+          AI analytics on your infrastructure. Your data never leaves. Answers
+          tested before go-live.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href={calendlyUrl}
+            class="inline-flex cursor-pointer items-center justify-center rounded-xl bg-brand-cta px-6 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a readiness audit — $750
+          </a>
+        </div>
+
+        <p class="mt-4 text-sm text-brand-muted">
+          or email
+          <a
+            href={mailtoUrl}
+            class="cursor-pointer font-medium text-brand-cta underline-offset-2 transition-colors duration-200 hover:text-brand-cta-hover hover:underline"
+          >
+            hello@semlay.ai
+          </a>
+        </p>
+      </div>
+
+      <VideoPlaceholder />
+    </div>
+  </div>
+</section>

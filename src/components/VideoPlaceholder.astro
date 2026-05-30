@@ -1,0 +1,38 @@
+---
+const demoTitle = "Ask your business data questions — privately, on your servers";
+---
+
+<div
+  id="video"
+  class="group relative aspect-video w-full overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-lg shadow-slate-900/5"
+>
+  <div class="absolute inset-0 gradient-blob-secondary" aria-hidden="true"></div>
+
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center">
+    <button
+      type="button"
+      class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-brand-cta text-white shadow-md transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
+      aria-label="Play marketing demo video (coming soon)"
+      disabled
+    >
+      <svg
+        class="ml-1 h-7 w-7"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </button>
+    <div>
+      <p class="text-sm font-semibold text-brand-primary">Marketing demo</p>
+      <p class="mt-1 max-w-xs text-sm text-brand-muted">{demoTitle}</p>
+      <p class="mt-2 text-xs text-brand-muted">Video coming soon</p>
+    </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-surface/80 to-transparent"
+    aria-hidden="true"
+  ></div>
+</div>
