@@ -43,18 +43,21 @@ Glossary and positioning: `../semlay-plans/CONTEXT.md` and `../semlay-plans/stra
 **Build:** `npm run build` → `dist/`  
 **Node:** ≥ 22.12 (`.nvmrc` / `.node-version`)
 
-### Cloudflare Pages settings
+### Cloudflare Pages / Workers Builds settings
 
 | Setting | Value |
 |---------|-------|
 | Production branch | `main` |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| Deploy command | **leave empty** |
+| Deploy command | `npx wrangler deploy` |
+| Version command | **leave empty** |
+| Root directory | `/` |
 
-Do **not** use branch `cloudflare/workers-autoconfig` or deploy command `npx wrangler versions upload`. Cloudflare auto-detected Astro as Workers and added KV session bindings; this site is pure HTML/CSS/JS and does not need them.
+`wrangler.jsonc` at repo root points at `./dist` (static assets only, no KV).
 
-If deploy fails with `namespace ... already exists [code: 10014]`, you are on Workers mode. Switch to the settings above and redeploy from `main`.
+Do **not** use branch `cloudflare/workers-autoconfig`. That branch adds `@astrojs/cloudflare` and a SESSION KV binding that breaks deploy.
+
+If deploy fails with `namespace ... already exists [code: 10014]`, clear the **Version command** field and redeploy.
 
 Also remove any redirect rule sending `semlay.com` → a parking page (e.g. `*.l.ink`).
 
