@@ -38,23 +38,26 @@ Glossary and positioning: `../semlay-plans/CONTEXT.md` and `../semlay-plans/stra
 
 ## Deploy (Cloudflare Pages)
 
+**Static site only** — no `@astrojs/cloudflare` adapter, no Workers, no KV.
+
 **Build:** `npm run build` → `dist/`  
 **Node:** ≥ 22.12 (`.nvmrc` / `.node-version`)
 
-### Option A: Git integration (recommended)
+### Cloudflare Pages settings
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Connect to Git**
-2. Repo: `semlay-labs/semlay-landing`, branch `main`
-3. Build command: `npm run build` · Output directory: `dist` · Node: 22
-4. Custom domain: `semlay.com` (+ `www` CNAME to Pages)
+| Setting | Value |
+|---------|-------|
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Deploy command | **leave empty** |
 
-### Option B: GitHub Actions
+Do **not** use branch `cloudflare/workers-autoconfig` or deploy command `npx wrangler versions upload`. Cloudflare auto-detected Astro as Workers and added KV session bindings; this site is pure HTML/CSS/JS and does not need them.
 
-Add repo secrets `CLOUDFLARE_API_TOKEN` (Pages Edit) and `CLOUDFLARE_ACCOUNT_ID`. Push to `main` runs `.github/workflows/deploy.yml`.
+If deploy fails with `namespace ... already exists [code: 10014]`, you are on Workers mode. Switch to the settings above and redeploy from `main`.
 
-### Manual
+Also remove any redirect rule sending `semlay.com` → a parking page (e.g. `*.l.ink`).
 
-```bash
-npm run build
-npx wrangler pages deploy dist --project-name=semlay-landing
-```
+### GitHub Actions (optional)
+
+Add repo secrets `CLOUDFLARE_API_TOKEN` (Pages Edit) and `CLOUDFLARE_ACCOUNT_ID`, then run `.github/workflows/deploy.yml` manually.
