@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import TallyEmbed from "../components/TallyEmbed.astro";
+import {
+  contactEmail,
+  heroSecondaryLine,
+  primaryCtaLabel,
+  tallyIntakeFormUrl,
+} from "../config/site";
+
+const steps = [
+  "Tell us about your business: role, source system, top 3 questions (~2 min)",
+  "Upload your schema: Postgres information_schema export; no live access",
+  "Get your readiness report: score, verdict, and setup recommendation by email",
+];
+---
+
+<BaseLayout
+  title="Free readiness report | Semlay"
+  description="Upload your schema, get a readiness score and verdict in minutes. No sales call required."
+>
+  <Nav />
+  <main class="pt-28 pb-16 sm:pt-32">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl font-bold tracking-tight text-brand-primary sm:text-4xl">
+          {primaryCtaLabel}
+        </h1>
+        <p class="mt-4 text-lg text-brand-secondary">{heroSecondaryLine}</p>
+
+        <section class="mt-10">
+          <h2 class="text-lg font-semibold text-brand-primary">What happens next</h2>
+          <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-brand-secondary">
+            {steps.map((step) => <li>{step}</li>)}
+          </ol>
+        </section>
+      </div>
+
+      <div class="mt-10 lg:mt-12">
+        <TallyEmbed formUrl={tallyIntakeFormUrl} />
+      </div>
+
+      <p class="mx-auto mt-10 max-w-3xl text-center text-sm text-brand-muted">
+        Questions?
+        <a
+          href={`mailto:${contactEmail}?subject=Readiness%20Check`}
+          class="cursor-pointer font-medium text-brand-cta underline-offset-2 hover:underline"
+        >
+          {contactEmail}
+        </a>
+      </p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import { readinessReviewUrl } from "../config/site";
+
+type FaqLink = { href: string; label: string };
+
+type Faq = {
+  question: string;
+  answer: string;
+  link?: FaqLink;
+};
+
+const faqs: Faq[] = [
+  {
+    question: "What can I build after setting up Semlay?",
+    answer:
+      "A private analytics assistant on your infrastructure: ask operations and finance questions in plain English, get answers backed by trusted business metrics and your policy documents, and connect Excel or your AI workspace. We prove your top business questions work before go-live.",
+  },
+  {
+    question: "What access does Semlay need?",
+    answer:
+      "For the free readiness check, only a schema file (table and column definitions). No live connection. For analytics setup, read-only access to your source database while we configure Semlay on your network. After go-live, the software runs on your infrastructure with outbound HTTPS only.",
+  },
+  {
+    question: "How does my data stay on my infrastructure?",
+    answer:
+      "Semlay runs inside your network. Queries and answers are processed locally. We do not host your data in a multi-tenant cloud. Setup and day-to-day use stay on your infrastructure; your data does not leave your environment.",
+  },
+  {
+    question: "What data sources does Semlay support?",
+    answer:
+      "Any structured system of record with SQL-accessible data: ERP (NetSuite, Sage, Odoo), ecommerce (Shopify, WooCommerce), POS, practice management, and similar. You need one primary source with transactional tables, not spreadsheets as your database of record.",
+  },
+  {
+    question: "What does my data need to look like?",
+    answer:
+      "Relational tables with clear keys and joins, columns that describe real business entities (orders, customers, products), and enough history to answer your top questions. The free readiness report scores joinability, column clarity, entity coverage, and schema completeness. Row-level cleanup can wait until setup if the shape is sound.",
+  },
+  {
+    question: "What do I upload for the free check?",
+    answer:
+      "A schema export (table and column definitions from information_schema). We provide the SQL. No row data required.",
+  },
+  {
+    question: "What if my data isn't ready?",
+    answer:
+      "You'll get a fix checklist you can share with your IT contractor. Re-run the check for free when things change.",
+  },
+  {
+    question: "What if I need help interpreting the report?",
+    answer:
+      "Book a Readiness Review for a 30-minute call and a firm setup quote. The fee is credited toward analytics setup if you proceed.",
+    link: {
+      href: readinessReviewUrl,
+      label: "Book a Readiness Review",
+    },
+  },
+];
+---
+
+<section id="faq" class="border-t border-brand-border bg-brand-surface py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <h2 class="text-2xl font-bold tracking-tight text-brand-primary sm:text-3xl">
+      FAQ
+    </h2>
+
+    <dl class="mt-10 divide-y divide-brand-border">
+      {
+        faqs.map((faq) => (
+          <div class="py-6 first:pt-0 last:pb-0">
+            <dt class="text-base font-semibold text-brand-primary">{faq.question}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-brand-secondary">
+              {faq.answer}
+              {faq.link && (
+                <span class="mt-3 block">
+                  <a
+                    href={faq.link.href}
+                    class="inline-flex cursor-pointer items-center font-semibold text-brand-cta underline-offset-2 transition-colors duration-200 hover:text-brand-cta-hover hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {faq.link.label}
+                    <span aria-hidden="true" class="ml-1">→</span>
+                  </a>
+                </span>
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

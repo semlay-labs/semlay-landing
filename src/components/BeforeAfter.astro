@@ -2,7 +2,7 @@
 const question =
   "What is contribution margin by channel after COGS, fees, and shipping?";
 
-const beforeAnswer = `Based on your order data, margin varies by channel. Web typically has higher volume. I'd estimate web around 30–35% gross margin, mobile slightly lower, and marketplace depends on fees. Consider reviewing your finance team's spreadsheet for exact figures.`;
+const beforeAnswer = `Based on your order data, margin varies by channel. Web typically has higher volume. I'd estimate web around 30 to 35% gross margin, mobile slightly lower, and marketplace depends on fees. Consider reviewing your finance team's spreadsheet for exact figures.`;
 
 type ChannelRow = { channel: string; margin: string };
 
@@ -20,7 +20,7 @@ const afterRows: ChannelRow[] = [
         Generic AI vs. answers you can trust
       </h2>
       <p class="mt-4 text-lg text-brand-secondary">
-        Same business question. One hand-waves. One uses precalculated metrics
+        Same business question. One hand-waves. One uses business metrics
         tested on your questions before go-live.
       </p>
     </div>
@@ -68,7 +68,7 @@ const afterRows: ChannelRow[] = [
           </span>
           <div>
             <p class="text-sm font-semibold text-brand-primary">Semlay on your infrastructure</p>
-            <p class="text-xs text-brand-muted">Precalculated · eval-tested · EUR</p>
+            <p class="text-xs text-brand-muted">Business rules · eval-tested · EUR</p>
           </div>
         </div>
 
@@ -99,13 +99,23 @@ const afterRows: ChannelRow[] = [
               }
             </tbody>
           </table>
+          <div
+            class="mt-4 rounded-lg border border-emerald-200 bg-white px-3 py-2.5"
+            role="note"
+          >
+            <p class="text-xs font-medium text-brand-muted">Semlay</p>
+            <p class="mt-0.5 text-sm text-brand-primary">
+              Want to break this down by product category, or compare to last
+              quarter?
+            </p>
+          </div>
         </div>
       </article>
     </div>
 
     <p class="mt-6 text-center text-xs text-brand-muted">
-      Illustrative demo figures from synthetic ecommerce data. Your audit tests
-      your own questions on your data.
+      Illustrative demo figures from synthetic ecommerce data. After setup, your
+      team asks follow-ups like this on your own data.
     </p>
   </div>
 </section>

@@ -1,5 +1,5 @@
 ---
-const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
+import { primaryCtaLabel, readinessCheckUrl } from "../config/site";
 ---
 
 <header class="fixed top-4 left-4 right-4 z-50 mx-auto max-w-6xl">
@@ -16,18 +16,22 @@ const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
 
     <div class="hidden items-center gap-8 sm:flex">
       <a
+        href="#how-it-works"
+        class="cursor-pointer text-sm font-medium text-brand-secondary transition-colors duration-200 hover:text-brand-primary"
+      >
+        How it works
+      </a>
+      <a
         href="#demo"
         class="cursor-pointer text-sm font-medium text-brand-secondary transition-colors duration-200 hover:text-brand-primary"
       >
         See the difference
       </a>
       <a
-        href={calendlyUrl}
+        href={readinessCheckUrl}
         class="cursor-pointer rounded-xl bg-brand-cta px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover"
-        target="_blank"
-        rel="noopener noreferrer"
       >
-        Book audit — $750
+        {primaryCtaLabel}
       </a>
     </div>
   </nav>

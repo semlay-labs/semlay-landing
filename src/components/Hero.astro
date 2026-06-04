@@ -1,12 +1,12 @@
 ---
 import PillBadge from "./PillBadge.astro";
 import VideoPlaceholder from "./VideoPlaceholder.astro";
-
-const calendlyUrl = "https://calendly.com/semlay/readiness-audit";
-const mailtoUrl =
-  "mailto:hello@semlay.ai?subject=Readiness%20audit%20(%24750)";
-
-const badges = ["Private infra", "Eval-tested", "Your servers"];
+import {
+  heroEyebrow,
+  heroSecondaryLine,
+  primaryCtaLabel,
+  readinessCheckUrl,
+} from "../config/site";
 ---
 
 <section class="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
@@ -15,14 +15,13 @@ const badges = ["Private infra", "Eval-tested", "Your servers"];
   <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
     <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div>
-        <div class="flex flex-wrap gap-2">
-          {badges.map((badge) => <PillBadge label={badge} />)}
-        </div>
-
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-cta">
+          {heroEyebrow}
+        </p>
         <h1
-          class="mt-6 text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
+          class="mt-3 text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
         >
-          Ask your business data questions in plain English — privately.
+          Ask your business data questions in plain English, privately.
         </h1>
 
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-brand-secondary">
@@ -30,26 +29,15 @@ const badges = ["Private infra", "Eval-tested", "Your servers"];
           tested before go-live.
         </p>
 
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div class="mt-8">
           <a
-            href={calendlyUrl}
+            href={readinessCheckUrl}
             class="inline-flex cursor-pointer items-center justify-center rounded-xl bg-brand-cta px-6 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            Book a readiness audit — $750
+            {primaryCtaLabel}
           </a>
+          <p class="mt-4 text-sm text-brand-muted">{heroSecondaryLine}</p>
         </div>
-
-        <p class="mt-4 text-sm text-brand-muted">
-          or email
-          <a
-            href={mailtoUrl}
-            class="cursor-pointer font-medium text-brand-cta underline-offset-2 transition-colors duration-200 hover:text-brand-cta-hover hover:underline"
-          >
-            hello@semlay.ai
-          </a>
-        </p>
       </div>
 
       <VideoPlaceholder />

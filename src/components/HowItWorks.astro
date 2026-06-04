@@ -1,0 +1,51 @@
+---
+const steps = [
+  {
+    number: "1",
+    title: "Tell us about your business",
+    description:
+      "Role, source system, and your top 3 questions (~2 min)",
+  },
+  {
+    number: "2",
+    title: "Upload your schema",
+    description:
+      "Export from Postgres information_schema; no scripts, no live access",
+  },
+  {
+    number: "3",
+    title: "Get your readiness report",
+    description:
+      "Score, verdict, and setup recommendation emailed to you",
+  },
+];
+---
+
+<section id="how-it-works" class="border-y border-brand-border bg-brand-surface py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-brand-primary sm:text-3xl">
+        How it works
+      </h2>
+    </div>
+
+    <ol class="mt-12 grid gap-8 sm:grid-cols-3">
+      {
+        steps.map((step) => (
+          <li class="relative text-center sm:text-left">
+            <div
+              class="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-brand-cta text-sm font-bold text-white sm:mx-0"
+              aria-hidden="true"
+            >
+              {step.number}
+            </div>
+            <h3 class="text-lg font-semibold text-brand-primary">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-brand-secondary">
+              {step.description}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
