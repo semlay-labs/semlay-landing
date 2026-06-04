@@ -1,6 +1,7 @@
 {
   "name": "semlay-landing",
   "compatibility_date": "2026-06-04",
+  "preview_urls": false,
   "assets": {
     "directory": "./dist"
   }
