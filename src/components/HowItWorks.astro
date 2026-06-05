@@ -1,4 +1,6 @@
 ---
+import { readinessCheckUrl } from "../config/site";
+
 const steps = [
   {
     number: "1",
@@ -11,6 +13,7 @@ const steps = [
     title: "Upload your schema",
     description:
       "Export from Postgres information_schema; no scripts, no live access",
+    helpHref: readinessCheckUrl,
   },
   {
     number: "3",
@@ -42,6 +45,17 @@ const steps = [
             <h3 class="text-lg font-semibold text-brand-primary">{step.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-brand-secondary">
               {step.description}
+              {step.helpHref && (
+                <>
+                  {" "}
+                  <a
+                    href={step.helpHref}
+                    class="font-medium text-brand-cta underline-offset-2 hover:underline"
+                  >
+                    SQL help
+                  </a>
+                </>
+              )}
             </p>
           </li>
         ))

@@ -1,5 +1,5 @@
 ---
-import { primaryCtaLabel, readinessCheckUrl } from "../config/site";
+import IntakeFormCta from "./IntakeFormCta.astro";
 ---
 
 <header class="fixed top-4 left-4 right-4 z-50 mx-auto max-w-6xl">
@@ -27,12 +27,7 @@ import { primaryCtaLabel, readinessCheckUrl } from "../config/site";
       >
         See the difference
       </a>
-      <a
-        href={readinessCheckUrl}
-        class="cursor-pointer rounded-xl bg-brand-cta px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover"
-      >
-        {primaryCtaLabel}
-      </a>
+      <IntakeFormCta class="!px-4 !py-2 !text-sm" />
     </div>
   </nav>
 </header>

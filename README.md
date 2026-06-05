@@ -36,14 +36,22 @@ npm run preview
 
 Glossary and positioning: `../semlay-plans/CONTEXT.md` and `../semlay-plans/strategy.md`.
 
-## Deploy (Cloudflare Pages)
+## Deploy
 
-**Static site only** — no `@astrojs/cloudflare` adapter, no Workers, no KV.
+**Cloudflare Workers Builds** is connected to this repo and is the **standalone** way to ship `semlay.com`. Push to `main` → Workers Builds runs `npm run build` then `npm run deploy` → production updates. No separate CI workflow or local wrangler step in the normal path.
+
+```bash
+git push origin main   # that's it
+```
+
+Monitor: Cloudflare dashboard → **Workers & Pages** → `semlay-landing`.
+
+**Static site only** — no `@astrojs/cloudflare` adapter, no Workers app logic, no KV.
 
 **Build:** `npm run build` → `dist/`  
 **Node:** ≥ 22.12 (`.nvmrc` / `.node-version`)
 
-### Cloudflare Workers Builds settings
+### Workers Builds settings (dashboard)
 
 | Setting | Value |
 |---------|-------|
@@ -53,14 +61,15 @@ Glossary and positioning: `../semlay-plans/CONTEXT.md` and `../semlay-plans/stra
 | Non-production branch deploy command | `npm run deploy` |
 | Root directory | `/` |
 
-`wrangler.jsonc` at repo root points at `./dist` (static assets only, no KV).
+`wrangler.jsonc` at repo root points at `./dist` (static assets only).
 
-Do **not** use branch `cloudflare/workers-autoconfig`. That branch adds `@astrojs/cloudflare` and a SESSION KV binding that breaks deploy.
+Do **not** use branch `cloudflare/workers-autoconfig` — it adds `@astrojs/cloudflare` and a SESSION KV binding that breaks deploy.
 
 If deploy fails with `namespace ... already exists [code: 10014]`, confirm production branch is `main` and change **Non-production branch deploy command** away from `npx wrangler versions upload`.
 
 Also remove any redirect rule sending `semlay.com` → a parking page (e.g. `*.l.ink`).
 
-### GitHub Actions (optional)
+### Not used for deploy
 
-Add repo secrets `CLOUDFLARE_API_TOKEN` (Pages Edit) and `CLOUDFLARE_ACCOUNT_ID`, then run `.github/workflows/deploy.yml` manually.
+- `.github/workflows/deploy.yml` — legacy manual workflow; Workers Builds replaced it. Do not add `CLOUDFLARE_API_TOKEN` to GitHub for landing deploys.
+- Local `npm run deploy` — only for debugging when Workers Builds logs are insufficient.

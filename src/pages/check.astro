@@ -2,14 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import IntakeFormCta from "../components/IntakeFormCta.astro";
 import SchemaUploadHelp from "../components/SchemaUploadHelp.astro";
-import TallyEmbed from "../components/TallyEmbed.astro";
 import {
   contactEmail,
   heroSecondaryLine,
-  primaryCtaLabel,
-  tallyIntakeFormPublicUrl,
-  tallyIntakeFormUrl,
+  intakeFormCtaLabel,
 } from "../config/site";
 
 const steps = [
@@ -25,40 +23,37 @@ const steps = [
 >
   <Nav />
   <main class="pt-28 pb-16 sm:pt-32">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h1 class="text-3xl font-bold tracking-tight text-brand-primary sm:text-4xl">
-          {primaryCtaLabel}
-        </h1>
-        <p class="mt-4 text-lg text-brand-secondary">{heroSecondaryLine}</p>
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-brand-primary sm:text-4xl">
+        Before you start
+      </h1>
+      <p class="mt-4 text-lg text-brand-secondary">{heroSecondaryLine}</p>
 
-        <section class="mt-10">
-          <h2 class="text-lg font-semibold text-brand-primary">What happens next</h2>
-          <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-brand-secondary">
-            {steps.map((step) => <li>{step}</li>)}
-          </ol>
-        </section>
-      </div>
+      <section class="mt-10">
+        <h2 class="text-lg font-semibold text-brand-primary">What happens next</h2>
+        <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-brand-secondary">
+          {steps.map((step) => <li>{step}</li>)}
+        </ol>
+      </section>
 
-      <div class="mt-10 space-y-6 lg:mt-12">
+      <div class="mt-10 space-y-8">
         <SchemaUploadHelp />
-        <div>
-          <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 class="text-lg font-semibold text-brand-primary">Intake form</h2>
-            <a
-              href={tallyIntakeFormPublicUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm font-medium text-brand-cta underline-offset-2 hover:underline"
-            >
-              Open in new tab
-            </a>
+        <div
+          class="rounded-2xl border border-brand-border bg-brand-surface px-6 py-8 text-center shadow-sm"
+        >
+          <p class="text-sm text-brand-secondary">
+            Ready? The intake form opens on the next page — upload works best there.
+          </p>
+          <div class="mt-5">
+            <IntakeFormCta label={intakeFormCtaLabel} />
           </div>
-          <TallyEmbed formUrl={tallyIntakeFormUrl} />
+          <p class="mt-4 text-xs text-brand-muted">
+            {intakeFormCtaLabel} · ~2 minutes · No credit card
+          </p>
         </div>
       </div>
 
-      <p class="mx-auto mt-10 max-w-3xl text-center text-sm text-brand-muted">
+      <p class="mt-10 text-center text-sm text-brand-muted">
         Questions?
         <a
           href={`mailto:${contactEmail}?subject=Readiness%20Check`}

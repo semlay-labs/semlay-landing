@@ -1,5 +1,5 @@
 ---
-import { tallyIntakeFormPublicUrl } from "../config/site";
+import IntakeFormCta from "./IntakeFormCta.astro";
 ---
 
 <section
@@ -11,7 +11,8 @@ import { tallyIntakeFormPublicUrl } from "../config/site";
   </h2>
   <p class="mt-2 text-sm leading-relaxed text-brand-secondary">
     No live database connection. Export table and column definitions, then upload one
-    <strong class="font-medium text-brand-primary">.zip</strong> file (both CSVs inside).
+    <strong class="font-medium text-brand-primary">.zip</strong> file (both CSVs inside) on the
+    intake form.
   </p>
 
   <details class="mt-4 text-sm text-brand-secondary">
@@ -58,26 +59,7 @@ LEFT JOIN information_schema.constraint_column_usage ccu
 WHERE tc.table_schema NOT IN ('pg_catalog', 'information_schema');`}</code></pre>
   </details>
 
-  <ul class="mt-4 space-y-2 text-sm text-brand-secondary">
-    <li>
-      <strong class="text-brand-primary">Upload:</strong> click the file area to browse. Drag-and-drop
-      often fails inside embedded forms — use click instead.
-    </li>
-    <li>
-      <strong class="text-brand-primary">Submit missing?</strong> Scroll down inside the form after
-      attaching your file. The button sits below the upload preview.
-    </li>
-    <li>
-      <strong class="text-brand-primary">Still stuck?</strong>
-      <a
-        href={tallyIntakeFormPublicUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-medium text-brand-cta underline-offset-2 hover:underline"
-      >
-        Open the form in a new tab
-      </a>
-      — drag-and-drop and submit work more reliably there.
-    </li>
-  </ul>
+  <div class="mt-6 sm:hidden">
+    <IntakeFormCta class="w-full" label="Continue to form" />
+  </div>
 </section>

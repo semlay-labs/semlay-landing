@@ -1,3 +1,6 @@
+# Legacy — not used. Production deploy is Cloudflare Workers Builds on push to main.
+# See README.md and CONTEXT.md.
+
 name: Deploy to Cloudflare Pages
 
 on:

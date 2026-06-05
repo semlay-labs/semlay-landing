@@ -1,10 +1,10 @@
 ---
 import PillBadge from "./PillBadge.astro";
 import VideoPlaceholder from "./VideoPlaceholder.astro";
+import IntakeFormCta from "./IntakeFormCta.astro";
 import {
   heroEyebrow,
   heroSecondaryLine,
-  primaryCtaLabel,
   readinessCheckUrl,
 } from "../config/site";
 ---
@@ -30,13 +30,16 @@ import {
         </p>
 
         <div class="mt-8">
-          <a
-            href={readinessCheckUrl}
-            class="inline-flex cursor-pointer items-center justify-center rounded-xl bg-brand-cta px-6 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta"
-          >
-            {primaryCtaLabel}
-          </a>
-          <p class="mt-4 text-sm text-brand-muted">{heroSecondaryLine}</p>
+          <IntakeFormCta />
+          <p class="mt-4 text-sm text-brand-muted">
+            {heroSecondaryLine} ·
+            <a
+              href={readinessCheckUrl}
+              class="font-medium text-brand-cta underline-offset-2 hover:underline"
+            >
+              Schema export help
+            </a>
+          </p>
         </div>
       </div>
 

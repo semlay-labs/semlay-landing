@@ -1,0 +1,20 @@
+---
+import { intakeFormUrl, primaryCtaLabel } from "../config/site";
+
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const { class: className = "", label = primaryCtaLabel } = Astro.props;
+---
+
+<a
+  href={intakeFormUrl}
+  class:list={[
+    "inline-flex cursor-pointer items-center justify-center rounded-xl bg-brand-cta px-6 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-brand-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cta",
+    className,
+  ]}
+>
+  {label}
+</a>
