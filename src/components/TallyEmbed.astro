@@ -6,41 +6,81 @@ interface Props {
 
 const { formUrl, title = "Semlay readiness check intake form" } = Astro.props;
 
-const embedSrc = new URL(formUrl);
+const embedSrc = new URL(formUrl.replace("/r/", "/embed/"));
 embedSrc.searchParams.set("transparentBackground", "1");
-embedSrc.searchParams.set("dynamicHeight", "1");
 embedSrc.searchParams.set("hideTitle", "1");
+embedSrc.searchParams.set("alignLeft", "1");
+// Tall fixed height: dynamicHeight can clip submit after file upload in embeds.
+embedSrc.searchParams.delete("dynamicHeight");
+
+const embedId = embedSrc.pathname.split("/").pop() ?? "form";
 ---
 
-<div class="tally-embed w-full">
+<div class="tally-embed w-full" data-tally-embed-id={embedId}>
   <iframe
     data-tally-src={embedSrc.toString()}
     loading="lazy"
     width="100%"
-    height="2400"
+    height="4200"
     frameborder="0"
     marginheight="0"
     marginwidth="0"
     title={title}
-    class="block w-full max-w-none rounded-2xl border border-brand-border bg-brand-surface shadow-sm"
+    class="tally-embed-frame block w-full max-w-none rounded-2xl border border-brand-border bg-brand-surface shadow-sm"
   ></iframe>
+  <p class="mt-3 text-center text-xs text-brand-muted">
+    After uploading a file, scroll down in the form to reach Submit.
+  </p>
 </div>
 <script is:inline>
-  var d = document,
-    w = "https://tally.so/widgets/embed.js",
-    v = function () {
+  (function () {
+    var d = document,
+      w = "https://tally.so/widgets/embed.js",
+      MIN_HEIGHT = 4200;
+
+    function resizeEmbed(iframe) {
+      if (!iframe) return;
+      var next = Math.max(MIN_HEIGHT, iframe.offsetHeight || 0);
+      iframe.style.height = next + "px";
+      iframe.setAttribute("height", String(next));
+    }
+
+    function bindResize(iframe) {
+      resizeEmbed(iframe);
+      window.addEventListener("message", function (e) {
+        if (typeof e.data !== "string" || e.data.indexOf("Tally") === -1) return;
+        resizeEmbed(iframe);
+        window.setTimeout(function () {
+          resizeEmbed(iframe);
+        }, 250);
+        window.setTimeout(function () {
+          resizeEmbed(iframe);
+        }, 1000);
+      });
+      window.addEventListener("resize", function () {
+        resizeEmbed(iframe);
+      });
+    }
+
+    function v() {
       if (typeof Tally !== "undefined") Tally.loadEmbeds();
       else
         d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
           e.src = e.dataset.tallySrc;
+          bindResize(e);
         });
-    };
-  if (typeof Tally !== "undefined") v();
-  else if (d.querySelector('script[src="' + w + '"]') == null) {
-    var s = d.createElement("script");
-    s.src = w;
-    s.onload = v;
-    s.onerror = v;
-    d.body.appendChild(s);
-  }
+      d.querySelectorAll("iframe[data-tally-src][src]").forEach(bindResize);
+    }
+
+    if (typeof Tally !== "undefined") v();
+    else if (d.querySelector('script[src="' + w + '"]') == null) {
+      var s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    } else {
+      v();
+    }
+  })();
 </script>

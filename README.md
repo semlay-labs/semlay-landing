@@ -43,21 +43,21 @@ Glossary and positioning: `../semlay-plans/CONTEXT.md` and `../semlay-plans/stra
 **Build:** `npm run build` → `dist/`  
 **Node:** ≥ 22.12 (`.nvmrc` / `.node-version`)
 
-### Cloudflare Pages / Workers Builds settings
+### Cloudflare Workers Builds settings
 
 | Setting | Value |
 |---------|-------|
 | Production branch | `main` |
 | Build command | `npm run build` |
 | Deploy command | `npm run deploy` |
-| Version command | `npm run deploy` |
+| Non-production branch deploy command | `npm run deploy` |
 | Root directory | `/` |
 
 `wrangler.jsonc` at repo root points at `./dist` (static assets only, no KV).
 
 Do **not** use branch `cloudflare/workers-autoconfig`. That branch adds `@astrojs/cloudflare` and a SESSION KV binding that breaks deploy.
 
-If deploy fails with `namespace ... already exists [code: 10014]`, the build is still using `@astrojs/cloudflare` from branch `cloudflare/workers-autoconfig`. Confirm production branch is `main` and redeploy.
+If deploy fails with `namespace ... already exists [code: 10014]`, confirm production branch is `main` and change **Non-production branch deploy command** away from `npx wrangler versions upload`.
 
 Also remove any redirect rule sending `semlay.com` → a parking page (e.g. `*.l.ink`).
 

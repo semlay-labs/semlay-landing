@@ -2,17 +2,19 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import SchemaUploadHelp from "../components/SchemaUploadHelp.astro";
 import TallyEmbed from "../components/TallyEmbed.astro";
 import {
   contactEmail,
   heroSecondaryLine,
   primaryCtaLabel,
+  tallyIntakeFormPublicUrl,
   tallyIntakeFormUrl,
 } from "../config/site";
 
 const steps = [
   "Tell us about your business: role, source system, top 3 questions (~2 min)",
-  "Upload your schema: Postgres information_schema export; no live access",
+  "Upload your schema: zip two CSV exports (instructions below); no live access",
   "Get your readiness report: score, verdict, and setup recommendation by email",
 ];
 ---
@@ -38,8 +40,22 @@ const steps = [
         </section>
       </div>
 
-      <div class="mt-10 lg:mt-12">
-        <TallyEmbed formUrl={tallyIntakeFormUrl} />
+      <div class="mt-10 space-y-6 lg:mt-12">
+        <SchemaUploadHelp />
+        <div>
+          <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-semibold text-brand-primary">Intake form</h2>
+            <a
+              href={tallyIntakeFormPublicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-medium text-brand-cta underline-offset-2 hover:underline"
+            >
+              Open in new tab
+            </a>
+          </div>
+          <TallyEmbed formUrl={tallyIntakeFormUrl} />
+        </div>
       </div>
 
       <p class="mx-auto mt-10 max-w-3xl text-center text-sm text-brand-muted">

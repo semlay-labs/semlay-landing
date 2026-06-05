@@ -1,0 +1,83 @@
+---
+import { tallyIntakeFormPublicUrl } from "../config/site";
+---
+
+<section
+  class="rounded-2xl border border-brand-border bg-brand-surface p-5 shadow-sm sm:p-6"
+  aria-labelledby="schema-upload-help"
+>
+  <h2 id="schema-upload-help" class="text-lg font-semibold text-brand-primary">
+    How to export your schema
+  </h2>
+  <p class="mt-2 text-sm leading-relaxed text-brand-secondary">
+    No live database connection. Export table and column definitions, then upload one
+    <strong class="font-medium text-brand-primary">.zip</strong> file (both CSVs inside).
+  </p>
+
+  <details class="mt-4 text-sm text-brand-secondary">
+    <summary class="cursor-pointer font-medium text-brand-primary">
+      Postgres — easiest options
+    </summary>
+    <ul class="mt-3 list-disc space-y-2 pl-5">
+      <li>
+        <strong class="text-brand-primary">pgAdmin / DBeaver:</strong> run each query below,
+        then use <em>Export / Save results as CSV</em> to your Downloads folder.
+      </li>
+      <li>
+        <strong class="text-brand-primary">psql:</strong> run the queries, copy results, or use
+        <code class="rounded bg-brand-bg px-1 py-0.5 text-xs">\copy (...)</code> to save into your
+        current folder (no <code class="rounded bg-brand-bg px-1 py-0.5 text-xs">/tmp</code>).
+      </li>
+    </ul>
+    <p class="mt-3 text-xs text-brand-muted">
+      Zip <code class="rounded bg-brand-bg px-1">semlay_schema_columns.csv</code> and
+      <code class="rounded bg-brand-bg px-1">semlay_schema_keys.csv</code> before uploading.
+    </p>
+  </details>
+
+  <details class="mt-3 text-sm text-brand-secondary">
+    <summary class="cursor-pointer font-medium text-brand-primary">SQL to run (Postgres)</summary>
+    <pre
+      class="mt-3 max-h-64 overflow-auto rounded-lg border border-brand-border bg-brand-bg p-3 text-xs leading-relaxed text-brand-primary"><code>{`-- 1) Tables and columns → save as semlay_schema_columns.csv
+SELECT table_schema, table_name, column_name, data_type, is_nullable
+FROM information_schema.columns
+WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
+ORDER BY table_schema, table_name, ordinal_position;
+
+-- 2) Keys and constraints → save as semlay_schema_keys.csv
+SELECT tc.table_schema, tc.table_name, tc.constraint_type, kcu.column_name,
+       ccu.table_schema AS foreign_table_schema,
+       ccu.table_name AS foreign_table_name,
+       ccu.column_name AS foreign_column_name
+FROM information_schema.table_constraints tc
+LEFT JOIN information_schema.key_column_usage kcu
+  ON tc.constraint_name = kcu.constraint_name
+ AND tc.table_schema = kcu.table_schema
+LEFT JOIN information_schema.constraint_column_usage ccu
+  ON tc.constraint_name = ccu.constraint_name
+WHERE tc.table_schema NOT IN ('pg_catalog', 'information_schema');`}</code></pre>
+  </details>
+
+  <ul class="mt-4 space-y-2 text-sm text-brand-secondary">
+    <li>
+      <strong class="text-brand-primary">Upload:</strong> click the file area to browse. Drag-and-drop
+      often fails inside embedded forms — use click instead.
+    </li>
+    <li>
+      <strong class="text-brand-primary">Submit missing?</strong> Scroll down inside the form after
+      attaching your file. The button sits below the upload preview.
+    </li>
+    <li>
+      <strong class="text-brand-primary">Still stuck?</strong>
+      <a
+        href={tallyIntakeFormPublicUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-brand-cta underline-offset-2 hover:underline"
+      >
+        Open the form in a new tab
+      </a>
+      — drag-and-drop and submit work more reliably there.
+    </li>
+  </ul>
+</section>
