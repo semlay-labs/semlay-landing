@@ -16,6 +16,12 @@ export const readinessReviewUrl = "https://cal.com/semlay/readiness-review";
 
 export const heroEyebrow = "Become an AI-first company";
 
+/** Marketing demo on YouTube (https://youtu.be/lmsg9NWLZmc) */
+export const marketingDemoYoutubeId = "lmsg9NWLZmc";
+
+export const marketingDemoTitle =
+  "Why ChatGPT on your database gives the wrong revenue number";
+
 export const primaryCtaLabel = "Get your free readiness report";
 
 export const intakeFormCtaLabel = "Start the readiness check";
